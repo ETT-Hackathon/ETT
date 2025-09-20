@@ -1,0 +1,120 @@
+Project Name: CuraCloud – Digital Health Record System (MVP)
+Tech Stack:
+
+Frontend: React + TailwindCSS + React Router
+
+Backend: Node.js + Express
+
+Database: MongoDB Atlas (connection string provided)
+
+🏗️ Folder Structure
+/client  → React frontend
+/server  → Node/Express backend
+
+🔑 Requirements
+Frontend (React + Tailwind)
+
+Use React Router for navigation.
+
+Routes:
+
+/register – Patient/Doctor/Admin registration
+
+/login – Login page
+
+/dashboard – Patient dashboard (upload/view medical records, manage access)
+
+/doctor – Doctor dashboard (view patient records when granted access, add treatment notes)
+
+/admin – Admin dashboard (verify users, manage roles)
+
+TailwindCSS for UI (clean, minimal styling).
+
+Forms for register/login with fetch calls to backend.
+
+Patient dashboard basic features:
+
+Upload health records (PDF/image upload)
+
+Grant/revoke doctor access
+
+View timeline/history of records
+
+Doctor dashboard:
+
+View patient records (when authorized)
+
+Add treatment notes
+
+Admin dashboard:
+
+Verify doctors
+
+Manage patient/doctor accounts
+
+Backend (Node/Express)
+
+Simple session-based authentication (no JWT).
+
+Store passwords in plaintext (for MVP demo only).
+
+Routes:
+
+POST /register → Register patient/doctor/admin
+
+POST /login → Login
+
+POST /upload → Upload health record (store metadata in DB, file in local /uploads)
+
+POST /grant-access → Patient grants access to a doctor
+
+POST /revoke-access → Patient revokes access
+
+GET /records/:patientId → Doctor fetches patient records (if authorized)
+
+POST /notes → Doctor adds consultation/treatment notes
+
+GET /verify-users → Admin fetch unverified doctors/patients
+
+POST /verify-user → Admin verifies doctor
+
+Connect to MongoDB Atlas using this connection string:
+
+mongodb+srv://mati_2006:Maitri%4009@cluster0.wpsahhs.mongodb.net/
+
+
+Collections:
+
+users → { name, email, password, role (patient/doctor/admin), verified }
+
+records → { patientId, filePath, description, date }
+
+access → { patientId, doctorId, granted }
+
+notes → { doctorId, patientId, content, date }
+
+Deployment on Replit
+
+Setup Procfile:
+
+web: node server/index.js
+
+
+Add scripts in /server/package.json:
+
+"scripts": {
+  "start": "node index.js"
+}
+
+
+Configure MongoDB Atlas IP whitelist for Replit.
+
+Ensure /client React app is built and served (can use concurrently or deploy separately).
+
+🚀 Instructions for Replit AI
+
+“Create a full-stack web app named CuraCloud using React (with TailwindCSS and React Router) for the frontend and Node.js/Express for the backend. Use MongoDB Atlas with the connection string provided.
+
+Implement user roles (patient, doctor, admin) with simple session-based auth (plaintext passwords for MVP). Patients can upload health records, grant/revoke access to doctors, and view history. Doctors can view patient records (if authorized) and add notes. Admins can verify doctors and manage accounts.
+
+Prepare the app for deployment on Replit, including server start scripts and MongoDB connection. Ensure /client and /server are structured separately, with working APIs and React routes.”
